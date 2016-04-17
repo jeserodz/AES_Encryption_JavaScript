@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>AES Example</title>
+</head>
+<body>
+  <h1>AES Example</h1>
+  <script type="text/javascript" src="js/lib/aes.js"></script>
+  <script type="text/javascript" src="js/lib/pbkdf2.js"></script>
+  <script type="text/javascript" src="js/AesUtil.js"></script>
+  <script type="text/javascript">
+    // AES PARAMS (DO NOT MODIFY) 
+    var iv = "F27D5C9927726BCEFE7510B1BDD3D137";
+    var salt = "3FF2EC019C627B945225DEBAD71A01B6985FE84C95A70EB132882F88C0A59A55";
+    var keySize = 128;
+    var iterations = iterationCount = 10;
+    // END-OF AES PARAMS
+
+    // INITIALIZE THE AES ENCRYPTION UTILITY OBJECT
+    var aesUtil = new AesUtil(keySize, iterationCount);
+
+    // THE PASSPHRASE WILL BE THE USER PASSWORD
+    var passPhrase = "secret";
+
+    // ENCRYPT
+    var plainText = "{ message: 'my message' }";
+    var encrypt = aesUtil.encrypt(salt, iv, passPhrase, plainText);
+    console.log("Encrypted: " + encrypt);
+
+    // DECRYPT
+    var cipherText = "FAtrpfFFUoEBqC1hspiT2JwiPAfCGlQ7YBYCO7z17dI=";
+    var decrypt = aesUtil.decrypt(salt, iv, passPhrase, cipherText);
+    console.log("Decrypted: " + decrypt);
+  </script>
+</body>
+</html>
